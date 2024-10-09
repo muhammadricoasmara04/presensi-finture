@@ -20,9 +20,10 @@ class RegisterController extends Controller
     {
         $validateRegis = $request->validate([
             'name' => 'required|max:255',
-            'bumn' => 'required|max:255',
+            'division' => 'required|max:255',
             'email' => ['required', 'email:dns', 'max:255', 'unique:users'],
-            'password' => 'required|min:6|max:255'
+            'password' => 'required|min:6|max:255',
+            'role' => 'required'
         ]);
         $validateRegis['password'] = HASH::make($validateRegis['password']);
         User::create($validateRegis);
