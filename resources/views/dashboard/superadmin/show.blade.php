@@ -11,7 +11,7 @@
                 <tr>
                     <th>NO</th>
                     <th>Nama</th>
-                    <th>BUMN</th>
+                    <th>Divisi</th>
                     <th>Email</th>
                     <th>Aksi</th>
                 </tr>
@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ $key + 1 }}</td> <!-- Nomor urut -->
                         <td>{{ $item->name }}</td> <!-- Nama -->
-                        <td>{{ $item->bumn }}</td> <!-- Status -->
+                        <td>{{ $item->division }}</td>
                         <td>{{ $item->email }}</td> <!-- Status -->
 
                         <td>

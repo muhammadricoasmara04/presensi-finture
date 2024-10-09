@@ -22,7 +22,7 @@ class User extends Authenticatable
         'password',
         'role',
         'full_name',
-        'bumn',
+        'division',
         'password',
         'image_profile',
 
@@ -50,6 +50,4 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    
 }

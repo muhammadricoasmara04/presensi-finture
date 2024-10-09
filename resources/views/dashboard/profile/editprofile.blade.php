@@ -18,15 +18,15 @@
         <div class="col">
             <div class="form-group boxed">
                 <div class="input-wrapper">
-                    <label for="password" class="nama_label">Nama</label>
+                    <label for="name" class="nama_label">Nama</label>
                     <input type="text" class="form-control" value="{{ $users->name }}" name="name"
                         placeholder="Nama Lengkap" autocomplete="off">
                 </div>
             </div>
             <div class="form-group boxed">
                 <div class="input-wrapper">
-                    <label for="password" class="bumn_label">Divisi</label>
-                    <input type="text" class="form-control" value="{{ $users->bumn }}" name="bumn"
+                    <label for="division" class="bumn_label">Divisi</label>
+                    <input type="text" class="form-control" value="{{ $users->division }}" name="bumn"
                         placeholder="Divisi" autocomplete="off" disabled>
                 </div>
             </div>

@@ -17,21 +17,21 @@ class DummyUserSeeder extends Seeder
             [
                 'name' => 'Muhammad Ricoasmara',
                 'email' => 'ricoasmara496@gmail.com',
-                'bumn' => 'PT.Dahana',
+                'division' => 'PT.Dahana',
                 'role' => 'superadmin',
                 'password' => bcrypt('04oktober2000')
             ],
             [
                 'name' => 'johndoepeserta',
                 'email' => 'johndoe@gmail.com',
-                'bumn' => 'PT.Pupuk Indonesia',
+                'division' => 'PT.Pupuk Indonesia',
                 'role' => 'peserta',
                 'password' => bcrypt('123456789')
             ],
             [
                 'name' => 'johndoesss',
                 'email' => 'johndoe1@gmail.com',
-                'bumn' => 'PT.Pertamina',
+                'division' => 'PT.Pertamina',
                 'role' => 'peserta',
                 'password' => bcrypt('123456789')
             ]

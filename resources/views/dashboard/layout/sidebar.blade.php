@@ -13,7 +13,7 @@
             @endif
             <div class="text logo-text">
                 <span class="name">{{ Auth::user()->name }}</span>
-                <span class="profession">{{ Auth::user()->bumn }}</span>
+                <span class="profession">{{ Auth::user()->division }}</span>
             </div>
         </div>
         <i class='bx bx-chevron-right toggle'></i>

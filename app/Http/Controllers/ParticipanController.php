@@ -180,32 +180,7 @@ class ParticipanController extends Controller
 
     public function editprofile(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'full_name' => 'required|string|max:255',
-        //     'bumn' => 'required|string|max:255',
-        //     'password' => 'nullable|string|min:8',
-        //     'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        // ]);
-
-        // // Ambil user yang sedang login
-        // $user = Auth::user();
-
-        // // Update data user
-        // $user->full_name = $validatedData['full_name'];
-        // $user->bumn = $validatedData['bumn'];
-
-        // if ($request->filled('password')) {
-        //     $user->password = bcrypt($validatedData['password']);
-        // }
-
-        // // Cek apakah ada file foto yang diupload
-        // if ($request->hasFile('foto')) {
-        //     $path = $request->file('foto')->store('images/foto', 'public');
-        //     $user->foto = $path;
-        // }
-
-        // // Simpan perubahan ke database
-        // $user->save();
+       
         $user = Auth::user()->name;
         $users = DB::table('users')->where('name', $user)->first();
         return view("dashboard.profile.editprofile", compact('users'), ['user' => $user]);
@@ -215,7 +190,7 @@ class ParticipanController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'bumn' => 'nullable|string|max:255',
+            'division' => 'nullable|string|max:255',
             'password' => 'nullable|min:6|confirmed',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Maksimal 2MB
         ]);
@@ -229,7 +204,7 @@ class ParticipanController extends Controller
 
         // Update nama dan BUMN
         $user->name = $request->input('name');
-        $user->bumn = $request->input('bumn');
+        $user->division = $request->input('division');
 
         // Update password jika ada
         if ($request->filled('password')) {
