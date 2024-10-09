@@ -1,0 +1,110 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+/*=============== VARIABLES CSS ===============*/
+:root {
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --white-color: hsl(0, 0%, 100%);
+    --black-color: hsl(0, 0%, 0%);
+
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Poppins", sans-serif;
+    --h1-font-size: 1.75rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.813rem;
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+}
+
+/*=============== BASE ===============*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.small-box {
+    border-radius: 8px;
+}
+.inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+.inner p {
+    margin: 0;
+}
+
+.card-body {
+    border-radius: 10px;
+}
+
+/*  */
+
+.card-body-admin {
+    display: grid; /* Use CSS Grid to control the layout */
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(200px, 1fr)
+    ); /* Create responsive columns */
+    gap: 20px; /* Add spacing between the grid items */
+}
+
+.card_inner {
+    background-image: url(/img/circle.jpg);
+    background-color: #ff5b61;
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the image covers the entire area of the card */
+    background-position: center;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body-admin i {
+    font-size: 100px; /* Sesuaikan ukuran ikon */
+    color: rgba(249, 57, 57, 0.959); /* Warna putih dengan transparansi */
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Posisikan di tengah elemen */
+    z-index: 0; /* Menempatkan ikon di belakang teks */
+}
+
+.card-body-admin h4,
+.card-body-admin h6,
+.card-body-admin .bx-history {
+    position: relative;
+    z-index: 1; /* Menempatkan teks di atas ikon */
+}
+
+.card-img-absolute {
+    display: none; /* Menyembunyikan gambar SVG jika tidak ingin ditampilkan */
+}
+
+.table-wrapper {
+    margin-top: 20px;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #aaa;
+}
+
+.search-icon i {
+    font-size: 20px;
+}

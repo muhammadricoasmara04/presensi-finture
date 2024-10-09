@@ -1,0 +1,181 @@
+/* Google Font Import - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    /* ===== Colors ===== */
+    --body-color: #e4e9f7;
+    --sidebar-color: #f9d9d9;
+    --primary-color: #695cfe;
+    --primary-color-light: #f6f5ff;
+    --toggle-color: #ddd;
+    --text-color: #707070;
+    --white-color: #fefdfd;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--white-color);
+    transition: var(--tran-05);
+}
+
+/* Webcam */
+#webcam video {
+    display: flex;
+    gap: 8px;
+    width: 100% !important;
+    margin: auto;
+    height: auto !important;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+}
+.presen_content {
+    background-color: rgb(213, 210, 210);
+    border-radius: 10px;
+    display: flex;
+    width: 50%;
+    height: auto;
+    min-height: 20vh;
+    align-items: center; /* memusatkan konten secara vertikal */
+    flex-direction: column; /* optional, untuk memastikan konten dalam satu kolom */
+}
+.btn {
+    width: 130px;
+    display: flex;
+    margin-top: 5px;
+}
+
+.btn .text {
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+span {
+    font-size: 10px;
+}
+/* layout create.blade.php */
+.btncreate {
+    max-width: 25vh;
+    border-radius: 12px;
+}
+
+.btncreate .text {
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+}
+i {
+    margin: 2px;
+}
+/* maps */
+#map {
+    display: flex;
+    gap: 8px;
+    height: 300px;
+    width: 500px;
+    border-radius: 15px;
+    margin-left: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between; /* Adjust as needed */
+    align-items: flex-start; /* Align items at the start of the cross-axis */
+    gap: 20px; /* Adjust the space between the two divs */
+}
+
+/* Get Photos */
+.img_presensi {
+    display: flex;
+    background-color: #695cfe;
+    height: 200px;
+    width: 300px;
+    flex: 1;
+}
+
+.img_presensi .row {
+    margin: 10px;
+    display: flex;
+    gap: 2px; /* Jarak antar gambar */
+}
+
+.img_presensi .row .img_in,
+.img_presensi .row .img_out {
+    flex: 1;
+    margin: 10px; /* Atur lebar elemen agar berbagi ruang sama rata */
+    width: 200px;
+    height: 100px;
+}
+
+.img_presensi .row img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.swal2-radio label {
+    font-size: 24px; /* Atur ukuran teks sesuai kebutuhan */
+    font-weight: bold;
+    color: #000000;
+}
+
+aside {
+    float: right;
+    width: 30%; /* Lebar aside */
+    margin-left: 20px; /* Jarak antara aside dengan konten */
+}
+
+.gambar-container {
+    text-align: center;
+}
+
+.wrapper {
+    float: left;
+    width: 65%; /* Lebar konten utama */
+    align-items: center;
+}
+
+.wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* @media (max-width: 768px) {
+    .presen_content {
+        width: 90vw;
+        padding: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+} */
+@media screen and (max-width: 476px) {
+    .btn {
+        width: 95%;
+    }
+    .presen_content {
+        width: 100%;
+    }
+}
