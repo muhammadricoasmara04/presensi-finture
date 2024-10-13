@@ -25,6 +25,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/userall', [SuperadminController::class, 'userAll'])->middleware('auth');
         Route::get('admin/recap', [SuperadminController::class, 'recapAll'])->middleware('auth');
         Route::get('admin/recap/{user_id}/preview', [SuperadminController::class, 'previewData'])->middleware('auth');
+        Route::get('admin/userall/{id}/edituser', [SuperadminController::class, 'edituser']);
+        Route::post('admin/userall/{id}/update', [SuperadminController::class, 'update'])->name('superadmin.updateuser');
+
     });
 
     Route::middleware([UserAccess::class . ':peserta'])->group(function () {

@@ -51,16 +51,44 @@ class SuperadminController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('dashboard.edit_user', compact('user'));
+        return view('dashboard.', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Superadmin $superadmin)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedUser = $request->validate([
+            'name' => 'required|string|max:255',
+            'password' => 'nullable|string|min:6|confirmed', // Password optional
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Gambar optional
+        ]);
+
+        $user = User::findOrFail($id);
+
+        // Cek apakah password diisi
+        if ($request->filled('password')) {
+            $validatedUser['password'] = bcrypt($request->password);
+        } else {
+            unset($validatedUser['password']);
+        }
+
+        // Cek apakah ada file foto yang diupload
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = $user->id . '-' . $file->getClientOriginalName();
+            $path = $file->storeAs('public/uploads/profileimage', $filename);
+            $validatedUser['image_profile'] = $path;
+        }
+
+        // Update user
+        $user->update($validatedUser);
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'User profile updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -98,5 +126,10 @@ class SuperadminController extends Controller
             return redirect('/')->with('error', 'Data tidak ditemukan.');
         }
         return view('dashboard/peserta/previewdata', compact('presensi'));
+    }
+    public function edituser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        return view("dashboard/superadmin/edituser", compact('user'));
     }
 }

@@ -36,7 +36,13 @@
                         <td>{{ $item->name }}</td> <!-- Nama -->
                         <td>{{ $item->status }}</td> <!-- Status -->
                         <td>{{ $item->reason }}</td> <!-- Status -->
-                        <td>{{ $item->checkin_time }}</td> <!-- Clock-in -->
+                        <td
+                            style="{{ \Carbon\Carbon::parse($item->checkin_time)->format('H:i') > '09:00' ? 'color: red;' : '' }}">
+                            {{ $item->checkin_time }}
+                            @if (\Carbon\Carbon::parse($item->checkin_time)->format('H:i') > '09:00')
+                                <span style="color: red;">(Terlambat)</span>
+                            @endif
+                        </td>
                         <td>{{ $item->checkout_time }}</td> <!-- Clock-out -->
                         <td>{{ $item->date }}</td> <!-- Tanggal -->
                         <td>

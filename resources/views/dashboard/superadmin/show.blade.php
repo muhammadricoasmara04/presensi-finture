@@ -26,7 +26,8 @@
 
                         <td>
                             <!-- Contoh aksi -->
-                            <a href="" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{{ url('admin/userall/' . $item->id . '/edituser') }}"
+                                class="btn btn-primary btn-sm">Edit</a>
                             <form action="" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')

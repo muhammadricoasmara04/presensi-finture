@@ -183,7 +183,7 @@ class ParticipanController extends Controller
        
         $user = Auth::user()->name;
         $users = DB::table('users')->where('name', $user)->first();
-        return view("dashboard.profile.editprofile", compact('users'), ['user' => $user]);
+        return view("dashboard.profile.editprofile", compact(var_name: 'users'), ['user' => $user]);
     }
 
     public function updateprofile(Request $request, $id)
