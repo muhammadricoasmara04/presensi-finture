@@ -1,11 +1,11 @@
 @extends('dashboard.layout.main')
 
 @section('container')
-    <h2>Responsive Table</h2>
+    <h2>User</h2>
 
-    <a href="/admin/registerusers" type="button" class="btn bg-primary"><i class='bx bxs-user-plus'></i>Add Users</a>
+    <a href="/admin/registerusers" type="button" class="btn bg-primary"><i class='bx bxs-user-plus'></i>Add User</a>
 
-    <div class="table-wrapper" style="overflow-x: auto;">
+    <div class="table-wrapper">
         <table class="fl-table">
             <thead>
                 <tr>

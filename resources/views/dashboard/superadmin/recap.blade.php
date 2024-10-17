@@ -1,21 +1,8 @@
 @extends('dashboard.layout.main')
 
 @section('container')
-    <h2>Histori Absen User </h2>
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form action="/perpustakaan">
-                <div class="search-box">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control mt-2 search-box" placeholder="" name="search"
-                            value="{{ request('search') }}">
-                        <button type="submit" class="btn"><i class='bx bx-search-alt'></i></button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="table-wrapper" style="overflow-x: auto;">
+    <h1>Histori</h1>
+    <div class="table-wrapper">
         <table class="fl-table">
             <thead>
                 <tr>
@@ -60,5 +47,8 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        {{ $usersRecapPage->links() }} <!-- Links untuk paginasi -->
     </div>
 @endsection

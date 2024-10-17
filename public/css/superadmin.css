@@ -56,31 +56,24 @@
 }
 
 .card_inner {
-    background-image: url(/img/circle.jpg);
-    background-color: #ff5b61;
-    background-repeat: no-repeat;
-    background-size: cover; /* Ensures the image covers the entire area of the card */
-    background-position: center;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card-body-admin i {
-    font-size: 100px; /* Sesuaikan ukuran ikon */
-    color: rgba(249, 57, 57, 0.959); /* Warna putih dengan transparansi */
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Posisikan di tengah elemen */
-    z-index: 0; /* Menempatkan ikon di belakang teks */
-}
-
-.card-body-admin h4,
-.card-body-admin h6,
-.card-body-admin .bx-history {
     position: relative;
-    z-index: 1; /* Menempatkan teks di atas ikon */
+    padding: 20px;
+    background-color: #f8f9fa; /* Ganti dengan warna latar belakang yang diinginkan */
+    border-radius: 8px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 1);
+}
+.card_inner i {
+    font-size: 80px; /* Ukuran 50% dari ukuran card_inner */
+    color: blue; /* Warna biru untuk ikon */
+    position: absolute; /* Posisi absolut untuk menempatkan ikon */
+    top: 20px; /* Atur posisi sesuai kebutuhan */
+    left: 20px; /* Atur posisi sesuai kebutuhan */
+}
+
+.card_inner h4,
+.card_inner h6 {
+    position: relative;
+    margin-left: 100px; /* Memberi jarak agar teks tidak tertutup ikon */
 }
 
 .card-img-absolute {

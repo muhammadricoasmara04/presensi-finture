@@ -45,13 +45,13 @@
                 <div class="register__box">
                     <i class="ri-user-3-line register__icon"></i>
                     <div class="register__box-input">
-                        <select class="register__input" name="role" id="role" required>
+                        <select class="register__input" name="role" id="role" required style="color: black;">
                             <option value="" disabled selected>Pilih Role</option>
                             <option value="superadmin">Super Admin</option>
                             <option value="peserta">User</option>
                             <!-- Tambahkan role lain sesuai kebutuhan -->
                         </select>
-                        <label for="role" class="register__label">Role</label>
+
                     </div>
                 </div>
             </div>

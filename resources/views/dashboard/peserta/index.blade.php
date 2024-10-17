@@ -17,14 +17,32 @@
                 data-url="{{ url('/dashboard/create?status=WFA') }}" data-status="WFA">WFA</div>
         </div>
     @else
+        <div class="profileuser">
+            @if (Auth::user()->role == 'peserta')
+                @php
+                    $path = Storage::url($user_profile->image_profile);
+
+                @endphp
+                <span class="image">
+                    <img src="{{ $path }}" alt="avatar">
+                </span>
+            @else
+                <img src="{{ asset('img/default-avatar.png') }}" alt="default avatar">
+            @endif
+            <div class="introduction">
+                <span class="name">{{ Auth::user()->name }}</span>
+                <span class="profession">{{ Auth::user()->division }}</span>
+            </div>
+        </div>
+
         <div class="wrapper">
             <div class="presen_content">
                 <div id="current_time" class="current-time mb-3">
                 </div>
                 <div class="button-container">
                     <!-- Tombol Check-In -->
-                    <a href="/dashboard/create" type="button" 
-                        class="btn btn-primary custom-btn {{ $presensitoday->checkin_time ? 'disabled' : '' }}" 
+                    <a href="/dashboard/create" type="button"
+                        class="btn btn-primary custom-btn {{ $presensitoday->checkin_time ? 'disabled' : '' }}"
                         id="checkin-button">
                         Check In
                         <span class="d-flex justify-content-center align-items-center gap-2">
@@ -33,8 +51,8 @@
                     </a>
 
                     <!-- Tombol Check-Out -->
-                    <a href="/dashboard/create" type="button" 
-                        class="btn btn-primary custom-btn {{ $presensitoday->checkout_time ? 'disabled' : '' }}" 
+                    <a href="/dashboard/create" type="button"
+                        class="btn btn-primary custom-btn {{ $presensitoday->checkout_time ? 'disabled' : '' }}"
                         id="checkout-button">
                         Check Out
                         <span class="d-flex justify-content-center align-items-center gap-2">

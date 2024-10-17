@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Participan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -61,6 +62,7 @@ class SuperadminController extends Controller
     {
         $validatedUser = $request->validate([
             'name' => 'required|string|max:255',
+            'division' => 'required|string|max:50',
             'password' => 'nullable|string|min:6|confirmed', // Password optional
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Gambar optional
         ]);
@@ -106,8 +108,9 @@ class SuperadminController extends Controller
     public function recapAll(Request $request)
     {
 
-        $usersRecap = DB::table('presensi')->get();
-        return view('dashboard.superadmin.recap', compact('usersRecap'));
+        $usersRecap = DB::table('presensi')->orderBy('date', 'DESC')->get();
+        $usersRecapPage= Participan::paginate(10);
+        return view('dashboard.superadmin.recap', compact('usersRecap','usersRecapPage'));
     }
     public function logout(Request $request)
     {

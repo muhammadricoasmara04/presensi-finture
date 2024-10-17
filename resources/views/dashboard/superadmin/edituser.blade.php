@@ -26,8 +26,8 @@
             <div class="form-group boxed">
                 <div class="input-wrapper">
                     <label for="division" class="bumn_label">Divisi</label>
-                    <input type="text" class="form-control" value="{{ $user->division }}" name="bumn"
-                        placeholder="Divisi" autocomplete="off" disabled>
+                    <input type="text" class="form-control" value="{{ $user->division }}" name="division"
+                        placeholder="Divisi" autocomplete="off">
                 </div>
             </div>
             <div class="form-group boxed">

@@ -11,7 +11,7 @@
 :root {
     /* ===== Colors ===== */
     --body-color: #e4e9f7;
-    --sidebar-color: #f9d9d9;
+    --sidebar-color: #f8f9fa;
     --primary-color: #695cfe;
     --primary-color-light: #f6f5ff;
     --toggle-color: #ddd;
@@ -46,10 +46,11 @@ body {
     border-radius: 10px;
     display: flex;
     width: 50%;
-    height: auto;
     min-height: 20vh;
-    align-items: center; /* memusatkan konten secara vertikal */
-    flex-direction: column; /* optional, untuk memastikan konten dalam satu kolom */
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 1);
 }
 .btn {
     width: 130px;
@@ -92,13 +93,6 @@ i {
     align-items: center;
 }
 
-.wrapper {
-    display: flex;
-    justify-content: space-between; /* Adjust as needed */
-    align-items: flex-start; /* Align items at the start of the cross-axis */
-    gap: 20px; /* Adjust the space between the two divs */
-}
-
 /* Get Photos */
 .img_presensi {
     display: flex;
@@ -138,14 +132,17 @@ aside {
     float: right;
     width: 30%; /* Lebar aside */
     margin-left: 20px; /* Jarak antara aside dengan konten */
+    margin-top: -23%;
 }
 
 .gambar-container {
     text-align: center;
 }
+.gambar-container img {
+    border-radius: 10px;
+}
 
 .wrapper {
-    float: left;
     width: 65%; /* Lebar konten utama */
     align-items: center;
 }
@@ -154,6 +151,26 @@ aside {
     content: "";
     display: table;
     clear: both;
+}
+
+.profileuser {
+    display: flex;
+    background-color: rgb(213, 210, 210);
+    border-radius: 10px;
+    flex-direction: column; /* Membuat elemen di dalamnya disusun secara vertikal */
+    justify-content: center; /* Pusatkan secara horizontal */
+    align-items: center; /* Pusatkan secara vertikal */
+    width: 32.5%;
+    gap: 20px; /* Mengatur jarak antar elemen di dalamnya */
+    margin-top: 25px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 1);
+}
+
+.introduction span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px;
+    text-align: center; /* Pusatkan teks dalam elemen span */
 }
 
 /* @media (max-width: 768px) {
@@ -177,5 +194,53 @@ aside {
     }
     .presen_content {
         width: 100%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .profileuser,
+    .wrapper {
+        width: 100%;
+    }
+    .wrapper {
+        margin-bottom: 30px;
+    }
+    aside {
+        float: none;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .gambar-container {
+        text-align: center;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .gambar-container img {
+        width: 80%;
+        height: 80%;
+        border-radius: 8px;
+    }
+    .gambar-container h4 {
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    #webcam {
+        width: 100%; /* Pastikan webcam mengambil lebar penuh */
+        height: auto; /* Sesuaikan tinggi webcam */
+        max-height: 300px; /* Batasi tinggi maksimal agar tidak terlalu besar */
+        margin-bottom: 20px; /* Tambahkan jarak di bawah webcam */
+    }
+
+    #map {
+        width: 100%; /* Peta juga mengambil lebar penuh */
+        height: 140px;
+    }
+    .btncreate {
+        display: responsive;
+        width: 100%;
+        margin-top: -40%;
     }
 }

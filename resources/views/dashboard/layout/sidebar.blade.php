@@ -55,14 +55,14 @@
                     <li class="nav-link">
                         <a class="nav {{ Request::is('admin/userall') ? 'active' : '' }}" href="/admin/userall">
                             <i class='bx bx-user icon'></i>
-                            <span class="text nav-text">User All</span>
+                            <span class="text nav-text">User</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
                         <a class="nav {{ Request::is('admin/recap') ? 'active' : '' }}" href="/admin/recap">
                             <i class='bx bx-spreadsheet icon'></i>
-                            <span class="text nav-text">Recap All</span>
+                            <span class="text nav-text">Recap Presensi </span>
                         </a>
                     </li>
                 @endif

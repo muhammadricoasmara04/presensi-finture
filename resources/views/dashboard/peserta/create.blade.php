@@ -19,10 +19,10 @@
         <div class="row" style="margin-top:40">
             <div class="col d-flex">
                 <input type="hidden" id=location>
-                <div id="webcam">
+                <div class="webcam" id="webcam">
                     <!-- Webcam video akan ditampilkan di sini -->
                 </div>
-                <div id="map">
+                <div class="map" id="map">
                     <!-- Peta akan ditampilkan di sini -->
                 </div>
             </div>
@@ -53,6 +53,5 @@
         <div>
             <input type="text" id="reason" value="{{ request('reason') }}" hidden>
         </div>
-        <script></script>
     @endif
 @endsection
