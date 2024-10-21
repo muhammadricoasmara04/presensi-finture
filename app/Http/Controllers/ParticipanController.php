@@ -8,29 +8,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
-use App\Models\Presensi;
-use App\Models\Dashboard;
 
 class ParticipanController extends Controller
 {
-
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $id = Auth::id(); // Ambil ID pengguna yang sedang login
+        $id = Auth::id();
         $today = date("Y-m-d");
 
-        // Cari presensi berdasarkan ID pengguna dan tanggal hari ini
+
         $presensitoday = DB::table('presensi')->where('user_id', $id)->where('date', $today)->first();
 
-        // Ambil data profil pengguna berdasarkan ID
         $user_profile = DB::table('users')->where('id', $id)->first();
 
-        // Lain-lain
         $checkin_in = $presensitoday ? $presensitoday->checkin_time : 'Belum Absen';
         $checkout_out = $presensitoday && $presensitoday->checkout_time ? $presensitoday->checkout_time : 'Belum Absen';
 
@@ -47,7 +38,6 @@ class ParticipanController extends Controller
         $check = DB::table('presensi')->where('date', $today)->where('name', $name)->count();
         return view('/dashboard/peserta/create', compact('check'));
     }
-
     public function uploadSickLetter(Request $request)
     {
         $request->validate([
@@ -138,7 +128,9 @@ class ParticipanController extends Controller
     public function show(Request $request)
     {
         $user = Auth::user(); // Mendapatkan data user yang sedang login
-        $presensi = DB::table('presensi')->where('user_id', $user->id)->get();
+        $presensi = Participan::where('user_id', $user->id)
+        ->orderBy('date', 'DESC') // Bisa juga gunakan 'created_at' jika diperlukan
+        ->get();
 
         return view("/dashboard/peserta/show", ['presensi' => $presensi]);
     }
@@ -180,7 +172,7 @@ class ParticipanController extends Controller
 
     public function editprofile(Request $request)
     {
-       
+
         $user = Auth::user()->name;
         $users = DB::table('users')->where('name', $user)->first();
         return view("dashboard.profile.editprofile", compact(var_name: 'users'), ['user' => $user]);
@@ -247,4 +239,25 @@ class ParticipanController extends Controller
         $request->session()->regenerateToken();
         return redirect('');
     }
+    public function markAbsentees()
+{
+    $today = date("Y-m-d");
+    $users = DB::table('users')->get();
+
+    foreach ($users as $user) {
+        $presensi = DB::table('presensi')->where('date', $today)->where('user_id', $user->id)->first();
+
+        if (!$presensi) {
+            // Jika pengguna tidak melakukan absensi sama sekali
+            DB::table('presensi')->insert([
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'date' => $today,
+                'status' => 'Tidak Hadir', // Status sebagai Tidak Hadir
+                'checkin_time' => null,
+                'checkout_time' => null,
+            ]);
+        }
+    }
+}
 }

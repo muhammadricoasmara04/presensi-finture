@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
         // routes/web.php
         Route::post('/dashboard/uploadSickLetter', [ParticipanController::class, 'uploadSickLetter']);
         Route::post('/dashboard/{id}/editprofile', [ParticipanController::class, 'updateprofile']);
+        
     });
 
     Route::get('/registeruser', [RegisterController::class, 'index'])->middleware('auth');

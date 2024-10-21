@@ -18,7 +18,7 @@ return new class extends Migration
             $table->time('checkin_time')->nullable();
             $table->time('checkout_time')->nullable();
             $table->date('date')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default('Tidak Hadir');
             $table->string('reason')->nullable();
             $table->string('sick_letter')->nullable();
             $table->string('location_in')->nullable();

@@ -107,10 +107,29 @@ class SuperadminController extends Controller
 
     public function recapAll(Request $request)
     {
+        // Ambil input pencarian dan tanggal dari request
+        $search = $request->input('search');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
 
-        $usersRecap = DB::table('presensi')->orderBy('date', 'DESC')->get();
-        $usersRecapPage= Participan::paginate(10);
-        return view('dashboard.superadmin.recap', compact('usersRecap','usersRecapPage'));
+        // Query dasar dari tabel 'presensi'
+        $query = DB::table('presensi')->orderBy('date', 'DESC');
+
+        // Jika ada input pencarian, tambahkan kondisi untuk pencarian
+        if ($search) {
+            $query->where('name', 'LIKE', "%{$search}%");
+        }
+
+        // Jika ada filter tanggal, tambahkan kondisi untuk rentang tanggal
+        if ($startDate && $endDate) {
+            $query->whereBetween('date', [$startDate, $endDate]);
+        }
+
+        // Jalankan query dengan paginasi
+        $usersRecap = $query->paginate(10);
+
+        // Kembalikan view dengan data yang telah dipaginasi
+        return view('dashboard.superadmin.recap', compact('usersRecap'));
     }
     public function logout(Request $request)
     {

@@ -15,8 +15,10 @@ class DummyDataRecapSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
+        $userIds = [1, 2, 3, 4];
         for ($i = 0; $i < 30; $i++) {
             Participan::create([
+                'user_id' => $faker->randomElement($userIds),
                 'name' => $faker->name,
                 'status' => $faker->randomElement(['Hadir', 'Tidak Hadir', 'Izin']),
                 'reason' => $faker->sentence,

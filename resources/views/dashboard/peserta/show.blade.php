@@ -1,9 +1,9 @@
 @extends('dashboard.layout.main')
 
 @section('container')
-    <h2>Histori Absen </h2>
+    <h1>Histori Absen </h1>
 
-    <div class="table-wrapper" style="overflow-x: auto;">
+    <div class="table-wrapper">
         <table class="fl-table">
             <thead>
                 <tr>
@@ -23,13 +23,25 @@
                         <td>{{ $key + 1 }}</td> <!-- Nomor urut -->
                         <td>{{ $item->name }}</td> <!-- Nama -->
                         <td>{{ $item->status }}</td> <!-- Status -->
-                        <td>{{ $item->reason }}</td> <!-- Status -->
-                          <td style="{{ \Carbon\Carbon::parse($item->checkin_time)->format('H:i') > '09:00' ? 'color: red;' : '' }}">
-                            {{ $item->checkin_time }}
-                            @if (\Carbon\Carbon::parse($item->checkin_time)->format('H:i') > '09:00')
-                                <span style="color: red;">(Terlambat)</span>
+                        <td>{{ $item->reason }}</td> <!-- Alasan -->
+
+                        @php
+                            $checkinTime = \Carbon\Carbon::parse($item->checkin_time)->format('H:i');
+                        @endphp
+
+                        <td
+                            @if ($checkinTime > '09:15') style="color: red;" 
+            @elseif ($checkinTime > '09:00') 
+                style="color: yellow;" @endif>
+                            {{ $checkinTime }}
+
+                            @if ($checkinTime > '09:15')
+                                <span style="color: red;">(Sangat Terlambat)</span>
+                            @elseif ($checkinTime > '09:00')
+                                <span style="color: yellow;">(Sedikit Terlambat)</span>
                             @endif
-                        </td> 
+                        </td>
+
                         <td>{{ $item->checkout_time }}</td> <!-- Clock-out -->
                         <td>{{ $item->date }}</td> <!-- Tanggal -->
                         <td>
@@ -43,6 +55,7 @@
                         </td>
                     </tr>
                 @endforeach
+
             </tbody>
         </table>
     </div>

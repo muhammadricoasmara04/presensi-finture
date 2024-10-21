@@ -2,6 +2,29 @@
 
 @section('container')
     <h1>Histori</h1>
+
+    <!-- Form Pencarian dan Filter -->
+    <form action="{{ url('/admin/recap') }}" method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" name="search" class="form-control" placeholder="Cari nama..."
+                    value="{{ request('search') }}">
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="start_date" class="form-control" placeholder="Start Date"
+                    value="{{ request('start_date') }}">
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="end_date" class="form-control" placeholder="End Date"
+                    value="{{ request('end_date') }}">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Cari</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Tabel Rekap Presensi -->
     <div class="table-wrapper">
         <table class="fl-table">
             <thead>
@@ -19,21 +42,28 @@
             <tbody>
                 @foreach ($usersRecap as $key => $item)
                     <tr>
-                        <td>{{ $key + 1 }}</td> <!-- Nomor urut -->
+                        <td>{{ ($usersRecap->currentPage() - 1) * $usersRecap->perPage() + $key + 1 }}</td>
+                        <!-- Nomor urut -->
                         <td>{{ $item->name }}</td> <!-- Nama -->
                         <td>{{ $item->status }}</td> <!-- Status -->
-                        <td>{{ $item->reason }}</td> <!-- Status -->
+                        <td>{{ $item->reason }}</td> <!-- Keterangan -->
+                        @php
+                            $checkinTime = \Carbon\Carbon::parse($item->checkin_time)->format('H:i');
+                        @endphp
                         <td
-                            style="{{ \Carbon\Carbon::parse($item->checkin_time)->format('H:i') > '09:00' ? 'color: red;' : '' }}">
-                            {{ $item->checkin_time }}
-                            @if (\Carbon\Carbon::parse($item->checkin_time)->format('H:i') > '09:00')
-                                <span style="color: red;">(Terlambat)</span>
+                            @if ($checkinTime > '09:15') style="color: red;" 
+                            @elseif ($checkinTime > '09:00') style="color: yellow;" @endif>
+                            {{ $checkinTime }}
+
+                            @if ($checkinTime > '09:15')
+                                <span style="color: red;">(Sangat Terlambat)</span>
+                            @elseif ($checkinTime > '09:00')
+                                <span style="color: yellow;">(Sedikit Terlambat)</span>
                             @endif
                         </td>
                         <td>{{ $item->checkout_time }}</td> <!-- Clock-out -->
                         <td>{{ $item->date }}</td> <!-- Tanggal -->
                         <td>
-                            <!-- Contoh aksi -->
                             <a href="{{ url('/admin/recap/' . $item->id . '/preview') }}"
                                 class="btn btn-warning btn-sm">Preview</a>
                             <a href="" class="btn btn-primary btn-sm">Edit</a>
@@ -48,7 +78,8 @@
             </tbody>
         </table>
     </div>
+
     <div class="d-flex justify-content-center mt-3">
-        {{ $usersRecapPage->links() }} <!-- Links untuk paginasi -->
+        {{ $usersRecap->appends(request()->query())->links('pagination::bootstrap-4') }}
     </div>
 @endsection
